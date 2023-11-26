@@ -1,0 +1,90 @@
+[
+	{
+		"name" : "gold padlock",
+		"shortDescription" : "Gold coloured Padlock blocking the exit from Main Hall",
+		"longDescription" : "Gold coloured Padlock blocking the exit from Main Hall",
+		"possessed" : false,
+		"location" : "MainHall",
+		"pickable" : false
+	},
+	{
+		"name" : "silver padlock",
+		"shortDescription" : "Silver Padlock on chains with which Ms Fitzgerlad is tied",
+		"longDescription" : "Silver Padlock on chains with which Ms Fitzgerlad is tied",
+		"possessed" : false,
+		"location" : "Bedroom",
+		"pickable" : false
+	},
+	{
+		"name" : "gold key",
+		"shortDescription" : "Opens Gold coloured Padlock",
+		"longDescription" : "Opens Gold coloured Padlock",
+		"possessed" : false,
+		"location" : "Kitchen",
+		"pickable" : true
+	},
+	{
+		"name" : "silver key",
+		"shortDescription" : "Opens Silver Padlock",
+		"longDescription" : "Opens Silver Padlock",
+		"possessed" : false,
+		"location" : "Attic",
+		"pickable" : true
+	},
+	{
+		"name" : "ladder",
+		"shortDescription" : "To climb to get books",
+		"longDescription" : "To climb to get books",
+		"possessed" : false,
+		"location" : "Library",
+		"pickable" : true
+	},
+	{
+		"name" : "bedroom lock",
+		"shortDescription" : "Blocking entrance to the bedroom. The lock takes 4 numbers.",
+		"longDescription" : "Blocking entrance to the bedroom. The lock takes 4 numbers.",
+		"possessed" : false,
+		"location" : "Study",
+		"pickable" : false
+	},
+	{
+		"name" : "attic lock",
+		"shortDescription" : "Blocking entrance to the attic. The lock takes 5 letters.",
+		"longDescription" : "Blocking entrance to the attic. The lock takes 5 letters.",
+		"possessed" : false,
+		"location" : "Observatory",
+		"pickable" : false
+	},
+	{
+		"name" : "torch",
+		"shortDescription" : "To see items in dark",
+		"longDescription" : "To see items in dark",
+		"possessed" : false,
+		"location" : "WineRoom",
+		"pickable" : true
+	},
+	{
+		"name" : "mongoose cage",
+		"shortDescription" : "Cage where mongoose is captured",
+		"longDescription" : "Cage where mongoose is captured",
+		"possessed" : false,
+		"location" : "MainHall",
+		"pickable" : true
+	},
+	{
+		"name" : "knife",
+		"shortDescription" : "Sharp object used to cut items",
+		"longDescription" : "Sharp object used to cut items",
+		"possessed" : false,
+		"location" : "Kitchen",
+		"pickable" : true
+	},
+	{
+		"name" : "telescope",
+		"shortDescription" : "Pointing at constellations in the night sky",
+		"longDescription" : "Pointing at constellations in the night sky",
+		"possessed" : false,
+		"location" : "Observatory",
+		"pickable" : true
+	}
+]

@@ -1,0 +1,90 @@
+[
+     {
+     	"name" : "MainHall",
+        "access": true,
+        "shortDescription": "A huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, cages with pet animals in them.",
+        "longDescription": "A huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, 3 cages, one with a mongoose, another with a grey parrot and the last one open.",
+        "toWest": "Library",
+        "toEast": "Kitchen",
+        "toNorth": "Observatory",
+        "items": [],
+        "level": 0
+    },
+    {
+    	"name" : "Cellar",    	
+        "access": false,
+        "shortDescription": "Dark and damp, with something written on the wall.",
+        "longDescription": "Dark and damp, with something written on the wall barely visible.",
+        "toWest": "WineRoom",
+        "items": [],
+        "level": 0
+    },
+    {
+    	"name" : "WineRoom",
+        "access": true,
+        "shortDescription": "Room with old wine bottles arranged in rows",
+        "longDescription": "Old wine bottles arranged in lettered rows, a small table with an empty bottle and a torch on one side of the room.",
+        "toEast": "Cellar",
+        "toSouth": "Kitchen",
+        "items": [],
+        "level": 0
+    },
+    {
+    	"name" : "Kitchen",
+        "access": true,
+        "shortDescription": "Cold, with a large fridge, an island with rotten food and a sharp knife.",
+        "longDescription": "Cold, with a large fridge, an island with rotten food and a sharp knife.",
+        "toWest": "MainHall",
+        "toNorth": "WineRoom",
+        "items": [],
+        "level": 0
+    },
+   	{
+   		"name" : "Library",
+        "access": true,
+        "shortDescription": "Tall bookshelves surrounding the entire room",
+        "longDescription": "Tall bookshelves surrounding the entire room, a ladder next to the door.",
+        "toEast": "MainHall",
+        "toNorth": "Study",
+        "items": [],
+        "level": 0
+    },
+	{
+		"name" : "Study",
+        "access": true,
+        "shortDescription": "Desk with scattered papers, a diary with something written about wines.",
+        "longDescription": "Desk with scattered papers, a diary opened on the page with Title 'The Exclusive wines'",
+        "toNorth": "Bedroom",
+        "toSouth": "Library",
+        "items": [],
+        "level": 0
+    },
+    {
+    	"name" : "Bedroom",
+        "access": false,
+        "shortDescription": "A woman is chained, hands tied with a rope in this windowless bedroom",
+        "longDescription": "A woman is chained and chains are locked with a silver padlock, hands tied with a rope in this windowless bedroom",
+        "toSouth": "Study",
+        "items": [],
+        "level": 1
+    },
+    {
+    	"name" : "Observatory",
+        "access": true,
+        "shortDescription": "A circular room with tall, arching windows and a telescope, entrance to attic on the north side.",
+        "longDescription": "A circular room with tall, arching windows and a telescope pointing towards stars in the night sky, entrance to attic on the north side.",
+        "toSouth": "MainHall",
+        "toNorth": "Attic",
+        "items": [],
+        "level": 1
+    },
+    {
+    	"name" : "Attic",
+        "access": false,
+        "shortDescription": "Totally dark with no access to light where soft whispers echo and unseen presences lurk.",
+        "longDescription": "Totally dark with no access to light where soft whispers echo and unseen presences lurk.",
+        "toSouth": "Observatory",
+        "items": [],
+        "level": 2
+    }
+]
