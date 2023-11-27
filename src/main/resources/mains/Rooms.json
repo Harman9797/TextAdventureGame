@@ -2,8 +2,8 @@
      {
      	"name" : "MainHall",
         "access": true,
-        "shortDescription": "A huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, cages with pet animals in them.",
-        "longDescription": "A huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, 3 cages, one with a mongoose, another with a grey parrot and the last one open.",
+        "shortDescription": "You are in a huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, cages with pet animals in them.",
+        "longDescription": "You are in a huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, 3 cages, one with a mongoose, another with a grey parrot and the last one open.",
         "toWest": "Library",
         "toEast": "Kitchen",
         "toNorth": "Observatory",
@@ -14,7 +14,7 @@
     	"name" : "Cellar",    	
         "access": false,
         "shortDescription": "Dark and damp, with something written on the wall.",
-        "longDescription": "Dark and damp, with something written on the wall barely visible.",
+        "longDescription": "Dark and damp, with a writing on the wall that says: Exclusive wines. How sweet!",
         "toWest": "WineRoom",
         "items": [],
         "level": 0

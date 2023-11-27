@@ -26,7 +26,7 @@ public class Character implements GameObject {
 	}
 
 	public Character(String name, String shortDescription, String longDescription, String location,
-			ArrayList<String> possessions, int healthpower, boolean pickable, ArrayList<String> states) {
+			ArrayList<String> possessions, int healthpower, boolean pickable, ArrayList<String> states, ArrayList<String> visited) {
 		super();
 		this.name = name;
 		this.shortDescription = shortDescription;
@@ -36,6 +36,7 @@ public class Character implements GameObject {
 		this.healthpower = healthpower;
 		this.pickable = pickable;
 		this.states = states;
+		this.visited = visited;
 
 		for (Room r : GameData.rooms) {
 			if (location.equalsIgnoreCase(r.getName()))
@@ -75,6 +76,7 @@ public class Character implements GameObject {
 
 	public void setLongDescription(String longDescription) {
 		this.longDescription = longDescription;
+		
 	}
 
 	public String getLocation() {
@@ -124,6 +126,14 @@ public class Character implements GameObject {
 		objectsPossessed.remove(i2);
 		possessions.remove(possession);
 		i2.setRoom(room2);
+	}
+	
+	public void removePossession(String possession) {
+		GameObject ob = GameData.items.stream()
+				.filter(c -> possession.equals(c.getName())).findFirst().orElse(null);
+		objectsPossessed.remove(ob);
+		possessions.remove(possession);
+		ob.setRoom(GameData.getPlayer().getRoom());
 	}
 
 	public ArrayList<GameObject> getObjectsPossessed() {

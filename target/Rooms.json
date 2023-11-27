@@ -2,8 +2,8 @@
      {
      	"name" : "MainHall",
         "access": true,
-        "shortDescription": "You are in a huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, cages with pet animals in them.",
-        "longDescription": "You are in a huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, 3 cages, one with a mongoose, another with a grey parrot and the last one open.",
+        "shortDescription": "A huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, cages with pet animals in them.",
+        "longDescription": "A huge room with a big door locked with a gold coloured padlock, paintings and a clock on the wall, 3 cages, one with a mongoose, another with a grey parrot and the last one open.",
         "toWest": "Library",
         "toEast": "Kitchen",
         "toNorth": "Observatory",

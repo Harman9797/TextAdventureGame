@@ -19,14 +19,14 @@ public class GameData {
 	public static List<Character> characters;
 	static Character player;
 
-	static Character getPlayer() {
+	public static Character getPlayer() {
 		return player;
 	}
 
 	public static void loadData() {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
-			rooms = mapper.readValue(new File("src/main/resources/mains/Rooms.json"),
+			rooms = mapper.readValue(new File("Rooms.json"),
 					mapper.getTypeFactory().constructCollectionType(List.class, Room.class));
 
 			for (Room r : rooms) {
@@ -64,10 +64,10 @@ public class GameData {
 				}
 			}
 
-			items = mapper.readValue(new File("src/main/resources/mains/Items.json"),
+			items = mapper.readValue(new File("Items.json"),
 					mapper.getTypeFactory().constructCollectionType(List.class, Item.class));
 
-			characters = mapper.readValue(new File("src/main/resources/mains/Character.json"),
+			characters = mapper.readValue(new File("Character.json"),
 					mapper.getTypeFactory().constructCollectionType(List.class, Character.class));
 
 			for (Character character : characters) {
@@ -76,11 +76,6 @@ public class GameData {
 					break;
 				}
 			}
-
-
-			System.out.println(rooms.get(0).getName());
-			System.out.println(items.get(0).getName());
-			System.out.println(characters.get(0).getName());
 		} catch (JsonParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

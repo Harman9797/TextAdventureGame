@@ -23,16 +23,9 @@ public class TextParser {
 			String lookwhere = input.replace("the", "");
 			if(input.equals("look"))
 				return new UserInput("print", GameData.getPlayer().getRoom().getLongDescription());
-			else if(lookwhere.contains("at")) {
-				return new UserInput("look", lookwhere.split("at")[1].trim());
-			}
-			else if(lookwhere.contains("through")) {
-				return new UserInput("look", lookwhere.split("through")[1].trim());
-			}
 			else {
 				return new UserInput("look", lookwhere.split("look")[1].trim());
-			}	
-			
+			}			
 		}
 
 		else if (input.contains("get") || input.contains("take") || input.contains("pick")) {
@@ -49,8 +42,24 @@ public class TextParser {
 			return new UserInput("drop", pickedObject);
 		}
 		
-
-		return new UserInput("Unrecognized", "Some other input not yet calcaulted");
+		else if (input.contains("read")) {
+			String readObject = input.split("read")[1].trim();
+			return new UserInput("read", readObject);
+		}
+		
+		else if (input.contains("find")) {
+			String readObject = input.split("find")[1].trim();
+			return new UserInput("find", readObject);
+		}
+		
+		else {
+			String parts[] = input.split(" ", 2);
+			if(parts.length > 1) {
+				return new UserInput(parts[0].trim(), parts[1].trim());
+			}
+				return new UserInput("invalid", parts[0]);
+		}
+		
 	}
 
 }
