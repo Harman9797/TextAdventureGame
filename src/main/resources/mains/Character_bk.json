@@ -1,0 +1,53 @@
+[
+	{
+		"name" : "main",
+		"shortDescription" : "main",
+		"longDescription" : "main",
+		"location" : "MainHall",
+		"possessions" : [],
+		"states" : ["looking around"],
+		"healthpower" : 100,
+		"pickable" : false,
+		"visited" : ["MainHall"]
+	},
+	{
+		"name" : "Snake",
+		"shortDescription" : "A dangerous rattle snake",
+		"longDescription" : "A dangerous rattle snake",
+		"location" : "Observatory",
+		"possessions" : [],
+		"states" : ["makes rattling sound", "slithers around the room"],
+		"healthpower" : 50,
+		"pickable" : false
+	},
+	{
+		"name" : "Mongoose",
+		"shortDescription" : "A mongoose caged in a cage",
+		"longDescription" : "A mongoose capable of killing even cobras caged in a cage",
+		"location" : "MainHall",
+		"possessions" : [],
+		"states" : ["makes short grunts"],
+		"healthpower" : 50,
+		"pickable" : true
+	},
+	{
+		"name" : "Grey parrot",
+		"shortDescription" : "A grep parrot that talks caged in a cage",
+		"longDescription" : "A grey parrot that talks caged in a cage",
+		"location" : "MainHall",
+		"possessions" : [],
+		"states" : ["says Bad Medusa! Bad Medusa!", "says Blue Book Rattle! Blue Book Rattle!"],
+		"healthpower" : 50,
+		"pickable" : false
+	},
+	{
+		"name" : "Ms Fitzgerald",
+		"shortDescription" : "A woman chained in the bedroom",
+		"longDescription" : "A woman chained in the bedroom",
+		"location" : "Bedroom",
+		"possessions" : [],
+		"states" : ["makes muffled screams", "tries to breathe heavily"],
+		"healthpower" : 100,
+		"pickable" : false
+	}
+]

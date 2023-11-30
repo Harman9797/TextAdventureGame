@@ -2,6 +2,8 @@ package mains.entities;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import mains.GameData;
 
 public class Character implements GameObject {
@@ -13,11 +15,15 @@ public class Character implements GameObject {
 	public ArrayList<String> possessions;
 	public ArrayList<String> states;
 	public int healthpower;
+	
+	@JsonIgnore
 	public Room room;
 
+	@JsonIgnore
 	public ArrayList<GameObject> objectsPossessed = new ArrayList<GameObject>();
 
 	private boolean pickable;
+	
 	private int currentState;
 	private ArrayList<String> visited = new ArrayList<String>();
 
@@ -38,20 +44,26 @@ public class Character implements GameObject {
 		this.states = states;
 		this.visited = visited;
 
-		for (Room r : GameData.rooms) {
+/*		for (Room r : GameData.rooms) {
 			if (location.equalsIgnoreCase(r.getName()))
 				room = r;
 		}
 
 		for (String item : possessions) {
-			for (Item i : GameData.items) {
+			for (GameObject i : GameData.items) {
 				if (item.equalsIgnoreCase(i.getName())) {
 					objectsPossessed.add(i);
 					break;
 				}
 			}
-			System.out.println("Unknown item: " + item + ".");
-		}
+			for (GameObject i : GameData.characters) {
+				if (item.equalsIgnoreCase(i.getName())) {
+					objectsPossessed.add(i);
+					break;
+				}
+			}
+		//	System.out.println("Unknown item: " + item + ".");
+		}*/
 	}
 
 	public String getName() {
@@ -91,10 +103,12 @@ public class Character implements GameObject {
 		}
 	}
 
+	@JsonIgnore
 	public Room getRoom() {
 		return this.room;
 	}
 
+	@JsonIgnore
 	public void setRoom(Room r) {
 		this.room = r;
 		this.location = r.getName();
@@ -106,18 +120,10 @@ public class Character implements GameObject {
 
 	public void setPossessions(ArrayList<String> possessions) {
 		this.possessions = possessions;
-		for (String item : possessions) {
-			for (Item i : GameData.items) {
-				if (item.equalsIgnoreCase(i.getName())) {
-					objectsPossessed.add(i);
-					break;
-				}
-			}
-			System.out.println("Unknown item: " + item + ".");
-		}
 	}
 
 	public void addPossessions(String possession, GameObject i2) {
+	//	System.out.println("Adding " + possession + " to inventory. Obj: " + i2.getName());
 		possessions.add(possession);
 		objectsPossessed.add(i2);
 	}
@@ -131,15 +137,20 @@ public class Character implements GameObject {
 	public void removePossession(String possession) {
 		GameObject ob = GameData.items.stream()
 				.filter(c -> possession.equals(c.getName())).findFirst().orElse(null);
+		if(ob == null)
+			ob = GameData.characters.stream()
+					.filter(c -> possession.equals(c.getName())).findFirst().orElse(null);
 		objectsPossessed.remove(ob);
 		possessions.remove(possession);
 		ob.setRoom(GameData.getPlayer().getRoom());
 	}
 
+	@JsonIgnore
 	public ArrayList<GameObject> getObjectsPossessed() {
 		return objectsPossessed;
 	}
 
+	@JsonIgnore
 	public void setObjectsPossessed(ArrayList<GameObject> objectsPossessed) {
 		this.objectsPossessed = objectsPossessed;
 	}

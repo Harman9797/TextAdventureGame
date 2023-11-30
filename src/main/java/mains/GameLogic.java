@@ -26,7 +26,7 @@ public class GameLogic {
 									"You travelled north to " + r.getName() + ". " + r.getLongDescription());
 						}
 					} else
-						return accessRestrictedMessage(r);
+						return accessRestrictedMessage(GameData.getPlayer().getRoom());
 				} else {
 					return new UserResponse(false, "There is nothing to the north");
 				}
@@ -44,7 +44,7 @@ public class GameLogic {
 									"You travelled east to " + r.getName() + ". " + r.getLongDescription());
 						}
 					} else
-						return accessRestrictedMessage(r);
+						return accessRestrictedMessage(GameData.getPlayer().getRoom());
 				} else {
 					return new UserResponse(false, "There is nothing to the east");
 				}
@@ -62,7 +62,7 @@ public class GameLogic {
 									"You travelled south to " + r.getName() + ". " + r.getLongDescription());
 						}
 					} else
-						return accessRestrictedMessage(r);
+						return accessRestrictedMessage(GameData.getPlayer().getRoom());
 				} else {
 					return new UserResponse(false, "There is nothing to the south");
 				}
@@ -80,7 +80,7 @@ public class GameLogic {
 									"You travelled west to " + r.getName() + ". " + r.getLongDescription());
 						}
 					} else
-						return accessRestrictedMessage(r);
+						return accessRestrictedMessage(GameData.getPlayer().getRoom());
 				} else {
 					return new UserResponse(false, "There is nothing to the west");
 				}
@@ -91,12 +91,26 @@ public class GameLogic {
 		else if (input.getVerb().equals("print")) {
 			if (input.getObject().equals("inventory"))
 				return new UserResponse(false, GameData.getPlayer().getPossessions().toString());
-			else if (input.getObject().equals("look"))
+			else if (input.getObject().equals("long"))
 				return new UserResponse(false, GameData.getPlayer().getRoom().getLongDescription());
+			else if (input.getObject().equals("save")) {
+				System.out.println("Game saved successfully. You can resume anytime. Goodbye!");
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				System.exit(0);
+			}
+			else if (input.getObject().equals("savefail"))
+				return new UserResponse(false, "Failed to save Game.");
+			else
+				return noObjectKnownMessage(input);
 		}
 
-		else if (input.getVerb().equals("pick")) {
-			for (Item i : GameData.items) {
+		else if (input.getVerb().equals("pick") || input.getVerb().equals("get")) {
+			for (GameObject i : GameData.items) {
 				if (input.getObject().equalsIgnoreCase(i.getName())) {
 					if (i.isPickable() && i.getRoom() == GameData.getPlayer().getRoom()
 							&& !GameData.getPlayer().getPossessions().contains(input.getObject())) {
@@ -131,26 +145,40 @@ public class GameLogic {
 			return new UserResponse(false, "Cannot drop something that is not possessed");
 		}
 
-		else if (input.getVerb().equals("look")) {
+		else if (input.getVerb().equals("look") || input.getVerb().equals("see")) {
 			if (input.getObject().contains("clock") && GameData.getPlayer().getRoom().getName().equals("MainHall"))
 				return new UserResponse(false, "The Clock is stuck on 11:45.");
 			else if (input.getObject().contains("telescope")
-					&& GameData.getPlayer().getRoom().getName().equals("Observatory"))
+					&& GameData.getPlayer().getRoom().getName().equals("Observatory")) {
+				Character snake = GameData.characters.stream().filter(c -> "Snake".equals(c.getName())).findFirst()
+						.orElse(null);
+				if(snake.getHealthpower() > 0) {
+					return new UserResponse(false, 
+							"The snake blocks the access to telescope. It is coming towards you with evil intent.");
+				}
 				return new UserResponse(false, "The telescope is focused on the constellation \"Orion\"");
+			}
 			else if (input.getObject().contains("exclusive wine")
 					&& GameData.getPlayer().getRoom().getName().equals("WineRoom"))
 				return new UserResponse(false,
 						"Exclusive wines are racked in the aisles labelled \"A\", \"C\", \"E\" and \"K\".");
 			else if (input.getObject().contains("wall") && GameData.getPlayer().getRoom().getName().equals("Cellar"))
 				return new UserResponse(false, "The wall has the words: \"Exclusive wines. How sweet!\"");
+			else if (input.getObject().contains("macbeth") && GameData.getPlayer().getRoom().getName().equals("Library"))
+				return new UserResponse(false, "All the pages in the book are blank except one which reads "
+						+ "\"What has 2 hands and a face but no arms and legs\"");
+			else
+				return noObjectKnownMessage(input);
 		}
 
 		else if (input.getVerb().equals("read")) {
-			if (input.getObject().equals("book") && GameData.getPlayer().getRoom().getName().equals("Library"))
+			if (input.getObject().contains("macbeth") && GameData.getPlayer().getRoom().getName().equals("Library"))
 				return new UserResponse(false, "All the pages in the book are blank except one which reads "
 						+ "\"What has 2 hands and a face but no arms and legs\"");
 			else if (input.getObject().contains("wall") && GameData.getPlayer().getRoom().getName().equals("Cellar"))
 				return new UserResponse(false, "The wall has the words: \"Exclusive wines. How sweet!\"");
+			else
+				return noObjectKnownMessage(input);
 		}
 
 		else if (input.getVerb().equals("find") || input.getVerb().equals("search")) {
@@ -158,6 +186,18 @@ public class GameLogic {
 					&& GameData.getPlayer().getRoom().getName().equals("WineRoom"))
 				return new UserResponse(false,
 						"Exclusive wines are racked in the aisles labelled \"A\", \"C\", \"E\" and \"K\".");
+			else if(input.getObject().contains("cake") && GameData.getPlayer().getRoom().getName().equals("Kitchen")) {
+				Item goldKey = GameData.items.stream().filter(c -> "gold key".equals(c.getName())).findFirst()
+						.orElse(null);
+				goldKey.setPickable(true);
+				GameData.getPlayer().addPossessions("gold Key", goldKey);
+				return new UserResponse(false, "Inside the cake you found a gold key. It has been added to your inventory.");
+			}
+			else if (input.getObject().contains("macbeth") && GameData.getPlayer().getRoom().getName().equals("Library"))
+				return new UserResponse(false, "All the pages in the book are blank except one which reads "
+						+ "\"What has 2 hands and a face but no arms and legs\"");
+			else
+				return noObjectKnownMessage(input);
 		}
 
 		else if (input.getVerb().equals("listen") || input.getVerb().equals("hear")) {
@@ -166,6 +206,8 @@ public class GameLogic {
 						.filter(c -> "Grey parrot".equals(c.getName())).findFirst().orElse(null);
 				return new UserResponse(false, "The parrot says " + parrot.getStates().get(parrot.getCurrentState()));
 			}
+			else
+				return noObjectKnownMessage(input);
 		}
 
 		else if (input.getVerb().equals("use")) {
@@ -175,20 +217,35 @@ public class GameLogic {
 						.orElse(null);
 				if (snake.getHealthpower() > 0) {
 					GameData.getPlayer().removePossession("mongoose cage");
+					GameData.getPlayer().removePossession("mongoose cage");
+					snake.setHealthpower(0);
 					return new UserResponse(false, "The mongoose attacked and killed the snake.");
 				}
 			} else if (input.getObject().contains("torch")
 					&& GameData.getPlayer().getRoom().getName().equals("Attic")) {
+				Item silverKey = GameData.items.stream().filter(c -> "silver key".equals(c.getName())).findFirst()
+						.orElse(null);
+				silverKey.setPickable(true);
 				return new UserResponse(false,
 						"Now you can see in the attic, there is nothing but a shiny silver key in there.");
 			}
 			else if (input.getObject().contains("silver key")
 					&& GameData.getPlayer().getRoom().getName().equals("Bedroom") 
 					&& GameData.getPlayer().possessions.contains("silver key")) {
+				
 				Character woman = GameData.characters.stream().filter(c -> "Ms Fitzgerald".equals(c.getName())).findFirst()
 						.orElse(null);
+				
+				if(woman.isPickable())
+					return new UserResponse(false,
+							"Silver key has already been used.");
 				woman.setPickable(true);
 				GameData.getPlayer().addPossessions("Ms Fitzgerald", woman);
+				
+				Room room = GameData.rooms.stream().filter(c -> "Bedroom".equals(c.getName())).findFirst()
+						.orElse(null);
+				room.setLongDescription("A windowless bedroom with chains unlocked");
+				room.setShortDescription("A windowless bedroom with chains unlocked");
 				return new UserResponse(false,
 						"Silver key unlocked the silver padlock. Ms Fitzgerlad is now free and she will follow you to help escape the house.");
 			}
@@ -204,6 +261,20 @@ public class GameLogic {
 					e.printStackTrace();
 				}
 				System.exit(0);
+			}
+			
+			else if (input.getObject().contains("telescope")
+					&& GameData.getPlayer().getRoom().getName().equals("Observatory")) {
+				Character snake = GameData.characters.stream().filter(c -> "Snake".equals(c.getName())).findFirst()
+						.orElse(null);
+				if(snake.getHealthpower() > 0) {
+					return new UserResponse(false, 
+							"The snake blocks the access to telescope. It is coming towards you with evil intent.");
+				}
+				return new UserResponse(false, "The telescope is focused on the constellation \"Orion\"");
+			}
+			else {
+				return noObjectKnownMessage(input);
 			}
 			
 		}
@@ -223,6 +294,8 @@ public class GameLogic {
 					return new UserResponse(false, "You push the bolder but it is heavy for one person. The entrance to cellar remains blocked");
 				}
 			}
+			else
+				return noObjectKnownMessage(input);
 		}
 		
 		else if (input.getVerb().equals("enter") || input.getVerb().equals("set") || input.getVerb().equals("open")) {
@@ -242,8 +315,26 @@ public class GameLogic {
 				return new UserResponse(false,
 						"The combination worked. Attic is now accessible.");
 			}
+			else if (input.getObject().contains("fridge")
+					&& GameData.getPlayer().getRoom().getName().equals("Kitchen")) {
+				return new UserResponse(false,
+						"Inside the fridge, you find soft drinks and a cake.");
+			}
+			else
+				return noObjectKnownMessage(input);
 			
 		}
+		
+		else if (input.getVerb().equals("eat")) {
+			if(input.getObject().contains("cake") && GameData.getPlayer().getRoom().getName().equals("Kitchen")) {
+				Item goldKey = GameData.items.stream().filter(c -> "gold key".equals(c.getName())).findFirst()
+						.orElse(null);
+				goldKey.setPickable(true);
+				GameData.getPlayer().addPossessions("gold key", goldKey);
+				return new UserResponse(false, "Inside the cake you found a gold key. It has been added to your inventory.");
+			}
+		}
+	
 
 		return new UserResponse(false, "An unknown input");
 	}
@@ -251,11 +342,11 @@ public class GameLogic {
 	private static UserResponse accessRestrictedMessage(Room r) {
 		if(r.getName().equals("Study")) {
 			return new UserResponse(false,
-					"Access is restricted. A silver padlock blocks the entrance to bedroom");
+					"Access is restricted. A lock that takes 4 numbers blocks the entrance to the bedroom.");
 		}
 		else if(r.getName().equals("Observatory")) {
 			return new UserResponse(false,
-					"Access is restricted. A lock that accepts 5 letters blocks the entrance to the attic");
+					"Access is restricted. A lock that accepts 5 letters blocks the entrance to the attic.");
 		}
 		else {
 			return new UserResponse(false,
@@ -278,8 +369,8 @@ public class GameLogic {
 		}
 		return npcdesc;
 	}
-
-	public static String getFirst() {
-		return GameData.getPlayer().getRoom().getLongDescription();
+	
+	private static UserResponse noObjectKnownMessage(UserInput input) {
+		return new UserResponse(false, "Cannot determine how to " + input.getVerb() + " " + input.getObject());
 	}
 }

@@ -21,7 +21,7 @@
 		"longDescription" : "Opens Gold coloured Padlock",
 		"possessed" : false,
 		"location" : "Kitchen",
-		"pickable" : true
+		"pickable" : false
 	},
 	{
 		"name" : "silver key",
@@ -29,7 +29,7 @@
 		"longDescription" : "Opens Silver Padlock",
 		"possessed" : false,
 		"location" : "Attic",
-		"pickable" : true
+		"pickable" : false
 	},
 	{
 		"name" : "ladder",

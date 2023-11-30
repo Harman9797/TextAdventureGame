@@ -1,5 +1,6 @@
 package mains.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -9,16 +10,23 @@ public class Room implements GameObject {
 	public boolean access;
 	public String shortDescription;
 	public String longDescription;
+	
+	@JsonIgnore
 	public Room roomToWest;
+	
+	@JsonIgnore
 	public Room roomToEast;
+	
+	@JsonIgnore
 	public Room roomToNorth;
+	
+	@JsonIgnore
 	public Room roomToSouth;
 
 	public String toWest = "";
 	public String toEast = "";
 	public String toNorth = "";
 //    public ArrayList<GameObject> items;
-	public int level = 0;
 	public String toSouth = "";
 
 	public Room() {
@@ -26,7 +34,7 @@ public class Room implements GameObject {
 	}
 
 	public Room(String name, boolean access, String shortDescription, String longDescription, String toWest,
-			String toEast, String toNorth, int level, String toSouth) {
+			String toEast, String toNorth, String toSouth) {
 		super();
 		this.name = name;
 		this.access = access;
@@ -35,7 +43,6 @@ public class Room implements GameObject {
 		this.toWest = toWest;
 		this.toEast = toEast;
 		this.toNorth = toNorth;
-		this.level = level;
 		this.toSouth = toSouth;
 	}
 
@@ -95,14 +102,6 @@ public class Room implements GameObject {
 		this.toNorth = toNorth;
 	}
 
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
 	public String getToSouth() {
 		return toSouth;
 	}
@@ -111,34 +110,42 @@ public class Room implements GameObject {
 		this.toSouth = toSouth;
 	}
 
+	@JsonIgnore
 	public Room getRoomToWest() {
 		return roomToWest;
 	}
 
+	@JsonIgnore
 	public void setRoomToWest(Room roomToWest) {
 		this.roomToWest = roomToWest;
 	}
 
+	@JsonIgnore
 	public Room getRoomToEast() {
 		return roomToEast;
 	}
 
+	@JsonIgnore
 	public void setRoomToEast(Room roomToEast) {
 		this.roomToEast = roomToEast;
 	}
 
+	@JsonIgnore
 	public Room getRoomToNorth() {
 		return roomToNorth;
 	}
 
+	@JsonIgnore
 	public void setRoomToNorth(Room roomToNorth) {
 		this.roomToNorth = roomToNorth;
 	}
 
+	@JsonIgnore
 	public Room getRoomToSouth() {
 		return roomToSouth;
 	}
 
+	@JsonIgnore
 	public void setRoomToSouth(Room roomToSouth) {
 		this.roomToSouth = roomToSouth;
 	}
@@ -146,9 +153,10 @@ public class Room implements GameObject {
 	@Override
 	public String toString() {
 		return "Room [name=" + name + ", shortDescription=" + shortDescription + ", toWest=" + toWest + ", toEast="
-				+ toEast + ", toNorth=" + toNorth + ", level=" + level + ", toSouth=" + toSouth + "]";
+				+ toEast + ", toNorth=" + toNorth +  ", toSouth=" + toSouth + "]";
 	}
 
+	@JsonIgnore
 	public Room getRoom() {
 		return this;
 	}
@@ -157,6 +165,7 @@ public class Room implements GameObject {
 		return false;
 	}
 
+	@JsonIgnore
 	public void setRoom(Room r) {
 		
 	}

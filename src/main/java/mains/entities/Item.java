@@ -1,5 +1,7 @@
 package mains.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import mains.GameData;
 
 public class Item implements GameObject {
@@ -9,6 +11,8 @@ public class Item implements GameObject {
     public String longDescription;
     public boolean possessed;
     public String location;
+    
+    @JsonIgnore
     private Room room;
     private boolean pickable;
     
@@ -75,10 +79,12 @@ public class Item implements GameObject {
 		}
 	}
     
+	@JsonIgnore
 	public Room getRoom() {
 		return this.room;
 	}
 	
+	@JsonIgnore
 	public void setRoom(Room r) {
 		this.room = r;
 		this.location = r.getName();

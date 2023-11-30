@@ -7,7 +7,7 @@ public class Run {
 	public static void main(String[] args) {
 		
 		GameData.loadData();
-		System.out.println(GameLogic.getFirst());
+		System.out.println(GameData.getFirst());
 		Scanner in;
 		in = new Scanner(System.in);	
 

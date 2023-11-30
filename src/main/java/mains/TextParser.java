@@ -19,16 +19,22 @@ public class TextParser {
 			return new UserInput("print", "inventory");
 		}
 
-		else if (input.contains("look")) {
-			String lookwhere = input.replace("the", "");
-			if(input.equals("look"))
-				return new UserInput("print", GameData.getPlayer().getRoom().getLongDescription());
-			else {
-				return new UserInput("look", lookwhere.split("look")[1].trim());
-			}			
+		else if(input.equals("look"))
+				return new UserInput("print", "long");			
+		
+		else if(input.equals("save")) {
+			try {
+				GameData.saveGame();
+				return new UserInput("print", "save");
+			}
+			catch(Exception e) {
+			if(GameData.env.equalsIgnoreCase("dev"))
+				e.printStackTrace();
+				return new UserInput("print", "savefail");
+			}
 		}
 
-		else if (input.contains("get") || input.contains("take") || input.contains("pick")) {
+/*		else if (input.contains("get") || input.contains("take") || input.contains("pick")) {
 			String pickedObject = input.substring(input.indexOf(" ")).trim();
 			if (pickedObject.toLowerCase().contains("mongoose"))
 				pickedObject = "mongoose cage";
@@ -50,7 +56,7 @@ public class TextParser {
 		else if (input.contains("find")) {
 			String readObject = input.split("find")[1].trim();
 			return new UserInput("find", readObject);
-		}
+		}*/
 		
 		else {
 			String parts[] = input.split(" ", 2);

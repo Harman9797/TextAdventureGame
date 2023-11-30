@@ -15,7 +15,7 @@
         "access": false,
         "shortDescription": "Dark and damp, with something written on the wall.",
         "longDescription": "Dark and damp, with a writing on the wall that says: Exclusive wines. How sweet!",
-        "toWest": "WineRoom",
+        "toEast": "WineRoom",
         "items": [],
         "level": 0
     },
@@ -24,7 +24,7 @@
         "access": true,
         "shortDescription": "Room with old wine bottles arranged in rows",
         "longDescription": "Old wine bottles arranged in lettered rows, a small table with an empty bottle and a torch on one side of the room.",
-        "toEast": "Cellar",
+        "toWest": "Cellar",
         "toSouth": "Kitchen",
         "items": [],
         "level": 0
