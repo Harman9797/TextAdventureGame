@@ -267,6 +267,7 @@ public class GameLogic {
 					GameData.getPlayer().removePossession("mongoose cage");
 					GameData.getPlayer().removePossession("mongoose");
 					mongoose.setPickable(false);
+					mongoose.setRoom(GameData.getPlayer().getRoom());
 					snake.setHealthpower(0);
 					return new UserResponse(false, "The mongoose attacked and killed the snake.");
 				}

@@ -32,7 +32,7 @@
     {
     	"name" : "Kitchen",
         "access": true,
-        "shortDescription": "Cold, with a large fridge, an island with rotten food and a sharp knife.",
+        "shortDescription": "Cold, with a large fridge and an island with rotten food.",
         "longDescription": "Cold, with a large fridge, an island with rotten food and a sharp knife.",
         "toWest": "MainHall",
         "toNorth": "WineRoom",
@@ -53,7 +53,7 @@
 		"name" : "Study",
         "access": true,
         "shortDescription": "Desk with scattered papers, a diary with something written about wines.",
-        "longDescription": "Desk with scattered papers, a diary opened on the page with Title 'The Exclusive wines'",
+        "longDescription": "Desk with scattered papers, a diary with something written about wines and a malfunctioning computer.",
         "toNorth": "Bedroom",
         "toSouth": "Library",
         "items": [],
@@ -82,7 +82,7 @@
     	"name" : "Attic",
         "access": false,
         "shortDescription": "Totally dark with no access to light where soft whispers echo and unseen presences lurk.",
-        "longDescription": "Totally dark with no access to light where soft whispers echo and unseen presences lurk.",
+        "longDescription": "Totally dark with no access to light where soft whispers echo and unseen presences lurk. You can smell the dirt.",
         "toSouth": "Observatory",
         "items": [],
         "level": 2

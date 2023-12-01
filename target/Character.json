@@ -36,7 +36,7 @@
 		"longDescription" : "A grey parrot that talks caged in a cage",
 		"location" : "MainHall",
 		"possessions" : [],
-		"states" : ["says Bad Medusa! Bad Medusa!", "says Blue Book Rattle! Blue Book Rattle!"],
+		"states" : ["says Bad Medusa! Bad Medusa!", "says Book Macbeth! Book Macbeth!"],
 		"healthpower" : 50,
 		"pickable" : false
 	},
