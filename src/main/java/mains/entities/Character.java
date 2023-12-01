@@ -140,9 +140,14 @@ public class Character implements GameObject {
 		if(ob == null)
 			ob = GameData.characters.stream()
 					.filter(c -> possession.equals(c.getName())).findFirst().orElse(null);
+		try {
 		objectsPossessed.remove(ob);
 		possessions.remove(possession);
 		ob.setRoom(GameData.getPlayer().getRoom());
+		}
+		catch(Exception e) {
+			
+		}
 	}
 
 	@JsonIgnore

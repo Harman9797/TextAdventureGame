@@ -129,7 +129,7 @@ public class GameData {
 			return "You are a detective who is solving the disappearance of Ms Fitzgerald. You trace her to"
 					+ " an old secluded big house. When you secretly enter through the window of the Main Hall"
 					+ ", someone hits you on the back of the head. The last thing you remember hearing is \"Let's"
-					+ " see how you get out of this detective\".\n" + " You wake up and find all the windows sealed. "
+					+ " see how you get out of this detective\".\n" + "You wake up and find all the windows sealed. "
 					+ GameData.getPlayer().getRoom().getLongDescription();
 		} else
 			return "Welcome back. You are in the " + GameData.getPlayer().getRoom().getName() + ". "
